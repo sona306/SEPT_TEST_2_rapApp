@@ -1,0 +1,61 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: {
+        typeName: 'PR Items details',
+        typeNamePlural: 'All PR Items details',
+        title: { type: #STANDARD, label:'PRItemdetails', value: 'PrNumber' }
+    }
+}
+annotate entity ZC_PR_ITEM
+    with 
+{
+  @UI.facet: [
+          { id: 'GeneralInfo', type: #IDENTIFICATION_REFERENCE, label: 'General Information', position: 10 }
+          ]
+
+  @UI: { lineItem: [ { position: 10, label: 'PR No',cssDefault.width: '4em' } ],
+       identification: [ { position: 10, label: 'PR No' } ] }
+PrNumber;
+@UI: { lineItem: [ { position: 20, label: 'FiscalYear',cssDefault.width: '4em' } ],
+       identification: [ { position: 20, label: 'FiscalYear' } ] }
+FiscalYear;
+@UI: { lineItem: [ { position: 30,cssDefault.width: '4em' ,type: #FOR_ACTION,
+    dataAction: 'ZC_PR.addNewRow',
+    label: 'Add New Row' } ],
+       identification: [ { position: 30, label: 'ItemNo' } ] }
+ItemNo;
+@UI: { lineItem: [ { position: 40, label: 'Material',cssDefault.width: '8em' } ],
+       identification: [ { position: 40, label: 'Material' } ] }
+       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_MAT', element : 'Value' }}]
+Material;
+//@UI: { lineItem: [ { position: 50, label: 'ShortText',cssDefault.width: '6em' } ],
+//       identification: [ { position: 50, label: 'ShortText' } ] }
+//ShortText;
+@UI: { lineItem: [ { position: 60, label: 'Quantity',cssDefault.width: '10em' } ],
+       identification: [ { position: 60, label: 'Quantity' } ] }
+Quantity;
+@UI: { lineItem: [ { position: 70, label: 'Unit',cssDefault.width: '4em' } ],
+       identification: [ { position: 70, label: 'Unit' } ] }
+       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_MAT', element : 'Unit' }}]
+Uom;
+@UI: { lineItem: [ { position: 80, label: 'CukyField',cssDefault.width: '4em' } ],
+       identification: [ { position: 80, label: 'CukyField' } ] }
+       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_CURR', element : 'Type' }}]
+CukyField;
+@UI: { lineItem: [ { position: 90, label: 'Price',cssDefault.width: '8em' } ],
+       identification: [ { position: 90, label: 'Price' } ] }
+Price;
+@UI: { lineItem: [ { position: 100, label: 'NetValue',cssDefault.width: '10em' } ],
+       identification: [ { position: 100, label: 'NetValue' } ] }
+NetValue;
+@UI: { lineItem: [ { position: 110, label: 'DelivDate',cssDefault.width: '10em' } ],
+       identification: [ { position: 110, label: 'DelivDate' } ] }
+DelivDate;
+@UI: { lineItem: [ { position: 120, label: 'CreatedAt',cssDefault.width: '15em' } ],
+       identification: [ { position: 120, label: 'CreatedAt' } ] }
+CreatedAt;
+@UI: { lineItem: [ { position: 130, label: 'CreatedBy',cssDefault.width: '8em' } ],
+       identification: [ { position: 130, label: 'CreatedBy' } ] }
+CreatedBy;
+    
+}

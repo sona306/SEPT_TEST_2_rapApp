@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for pr'
+define service ZSD_PR {
+  expose ZC_PR;
+  expose ZC_PR_ITEM;
+}

@@ -1,0 +1,49 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+      typeName: 'Purchase Requisition Approval App',
+      typeNamePlural: 'Purchase Requisition Approval App',
+      title: { type: #STANDARD, label: 'Pr Number', value: 'PrNumber' }
+  }
+}
+annotate entity ZC_PR
+    with 
+{
+  @UI.facet: [
+          { id: 'GeneralInfo', type: #IDENTIFICATION_REFERENCE, label: 'General Information', position: 10 },
+          { id: 'Items', type: #LINEITEM_REFERENCE, label: 'PR Items', position: 20, targetElement: '_Item' }
+      ]
+
+  @UI: { lineItem: [ { position: 10, label: 'PR No',cssDefault.width: '4em' } ],
+       identification: [ { position: 10, label: 'PR Number' } ] }
+       @UI.selectionField: [{ position:10 }]
+PrNumber;
+  @UI: { lineItem: [ { position: 20, label: 'Fiscal Year',cssDefault.width: '4em' } ],
+       identification: [ { position: 20, label: 'FiscalYear' } ] }
+FiscalYear;
+@UI: { lineItem: [ { position: 30, label: 'Status',cssDefault.width: '8em',value: 'Status' , criticality: 'Statuscriticality'},
+ { type: #FOR_ACTION,dataAction: 'ApprovePR' , label: 'ApprovePR' },
+ { type: #FOR_ACTION,dataAction: 'RejectPR' , label: 'RejectPR' },
+ { type: #FOR_ACTION,dataAction: 'SubmitPR' , label: 'SubmitPR' },
+ { type: #FOR_ACTION,dataAction: 'CancelPR' , label: 'CancelPR' }],
+       identification: [ { position: 30, label: 'Status' } ] }
+Status;
+@UI: { lineItem: [ { position: 40, label: 'Currency',cssDefault.width: '4em' } ],
+       identification: [ { position: 40, label: 'Currency' } ] }
+       @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_CURR', element : 'Type' }}]
+Currency;
+@UI: { lineItem: [ { position: 50, label: 'TotalValue',cssDefault.width: '15em' } ],
+       identification: [ { position: 50, label: 'TotalValue' } ] }
+TotalValue;
+@UI: { lineItem: [ { position: 60, label: 'Reason for rejection',cssDefault.width: '10em'  } ],
+       identification: [ { position: 60, label: 'Reason for rejection',hidden: true  } ] }
+        @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_REJ_PR', element : 'Type' }}]
+Explanation;
+@UI: { lineItem: [ { position: 70, label: 'CreatedAt',cssDefault.width: '15em' } ],
+       identification: [ { position: 70, label: 'CreatedAt' } ] }
+CreatedAt;
+@UI: { lineItem: [ { position: 80, label: 'CreatedBy',cssDefault.width: '8em' } ],
+       identification: [ { position: 80, label: 'CreatedBy' } ] }
+CreatedBy;
+
+}
